@@ -3,7 +3,7 @@ import { Button, Card, Container } from 'react-bootstrap'
 
 import products from '../data/products'
 
-const OneProduct = () => {
+const OneProduct = ({ addToCart }) => {
     return (
         <Container className='mt-5 gap-3 d-flex justify-content-center flex-wrap'>
             {
@@ -14,7 +14,8 @@ const OneProduct = () => {
                             <Card.Title> {product.name}</Card.Title>
                             <Card.Text> {product.description}</Card.Text>
                             <Card.Text> {product.price} €</Card.Text>
-                            <Button variant="primary">Buy</Button>
+                            <Button variant="primary" onClick={
+                                () => addToCart(product)}>Buy</Button>
                         </Card.Body>
                     </Card>
 
