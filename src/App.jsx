@@ -1,15 +1,16 @@
 import { Container } from 'react-bootstrap'
 import Header from './components/Header'
-import About from './components/About'
 import ProductList from './components/ProductList'
+import { HashRouter as Router } from 'react-router-dom'
 
 const App = () => {
     return (
-        <Container>
-            <Header />
-            <About />
-            <ProductList/>
-        </Container>
+        <Router>
+            <Container>
+                <Header />
+                <ProductList />
+            </Container>
+        </Router>
     )
 }
 
