@@ -20,10 +20,10 @@ const ProductList = () => {
                 return
             }
             console.log(`${item.name} Already in cart, adding one more`)
-            item.countInStock = item.countInStock - 1
-            item.count = item.count + 1
+            item.countInStock--
+            item.count++
         } else {
-            item.countInStock = item.countInStock - 1
+            item.countInStock--
             item.count = 1
             tempCartProducts.push(item)
         }
@@ -32,45 +32,39 @@ const ProductList = () => {
     }
 
     function clearCart() {
-        cartProducts.forEach(product=>{
+        cartProducts.forEach(product => {
             product.countInStock = product.countInStock + product.count
             product.count = 0
         })
         setCartProducts([])
     }
     function increaseQuantity(item) {
-        if(item.countInStock > 0){
-            item.count = item.count + 1
-            item.countInStock = item.countInStock - 1
+        if (item.countInStock > 0) {
+            item.count++
+            item.countInStock--
             const tempCartProducts = [...cartProducts]
             setCartProducts(tempCartProducts)
-        }
-     }
+        } else { console.log("Out of stock") }
+    }
     function decreaseQuantity(item) {
         if (item.count > 1) {
-            item.count = item.count - 1
-            item.countInStock = item.countInStock + 1
+            item.count--
+            item.countInStock++
             const tempCartProducts = [...cartProducts]
             setCartProducts(tempCartProducts)
         } else {
             console.log("Lets leave at least 1")
         }
-
     }
 
 
     function deleteProduct(item) {
-        console.log("Remove ", item.name)
         const tempCartProducts = [...cartProducts]
-
-        const findSome = tempCartProducts.find(product =>
-            product.name === item.name)
-        if (findSome) {
-            findSome.countInStock = findSome.count
-            findSome.count = 0
-            tempCartProducts.pop(findSome)
-        }
+        item.countInStock = item.countInStock + item.count
+        item.count = 0
+        tempCartProducts.pop(item)
         setCartProducts(tempCartProducts)
+        console.log("Removed ", item.name)
     }
 
     return (
