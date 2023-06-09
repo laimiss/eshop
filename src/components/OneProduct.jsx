@@ -5,7 +5,7 @@ import products from '../data/products'
 
 const OneProduct = () => {
     return (
-        <Container className='d-flex justify-content-cente flex-wrap'>
+        <Container className='d-flex justify-content-center flex-wrap'>
             {
                 products.map((product, index) => (
                     <Card style={{ width: '18rem' }} key={index}>
